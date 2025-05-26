@@ -969,6 +969,11 @@ body {
     
     /* Responsive adjustments */
     @media (max-width: 768px) {
+        .cyber-nav {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
         .stat-grid {
             grid-template-columns: 1fr;
             gap: 2rem;
@@ -982,3 +987,244 @@ body {
             font-size: 1rem;
         }
     }
+
+    /* Carousel */
+    .cyber-carousel {
+        margin: 3rem auto;
+    }
+    .carousel-container {
+            position: relative;
+            width: 1200px;
+            max-width: 100%;
+            overflow: hidden;
+            height: 500px;
+            perspective: 2000px;
+            margin: 2rem auto;
+        }
+
+        .carousel-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--cyber-yellow);
+            text-shadow: var(--glow-effect);
+            position: relative;
+        }
+
+        .carousel-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--neon-purple);
+            box-shadow: var(--glow-effect);
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s ease;
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 300px;
+            height: 400px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #0d0221;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            filter: brightness(0.7);
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .carousel-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(13, 2, 33, 0.9));
+            z-index: 1;
+        }
+
+        .carousel-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(211, 0, 197, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .carousel-item:hover::after {
+            opacity: 1;
+        }
+
+        .game-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            z-index: 2;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-item:hover .game-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .game-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--cyber-yellow);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        .game-year {
+            font-size: 1rem;
+            color: var(--cyber-light);
+            opacity: 0.8;
+        }
+
+        .nav-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 15px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--cyber-light);
+            opacity: 0.3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--neon-purple);
+            opacity: 1;
+            box-shadow: 0 0 10px var(--neon-purple);
+            transform: scale(1.2);
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            z-index: 10;
+            transform: translateY(-50%);
+        }
+
+        .carousel-btn {
+            background: rgba(13, 2, 33, 0.7);
+            color: var(--cyber-yellow);
+            border: 2px solid var(--neon-purple);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            box-shadow: 0 0 10px rgba(211, 0, 197, 0.5);
+        }
+
+        .carousel-btn:hover {
+            background: var(--neon-purple);
+            color: var(--cyber-dark);
+            transform: scale(1.1);
+        }
+
+        /* CRT Scanlines Effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.2;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .carousel-container {
+                height: 400px;
+            }
+            .carousel-item {
+                width: 250px;
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-container {
+                height: 350px;
+            }
+            .carousel-item {
+                width: 200px;
+                height: 300px;
+            }
+            .carousel-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-container {
+                height: 300px;
+            }
+            .carousel-item {
+                width: 180px;
+                height: 250px;
+            }
+            .game-info {
+                padding: 1rem;
+            }
+            .game-title {
+                font-size: 1.2rem;
+            }
+        }

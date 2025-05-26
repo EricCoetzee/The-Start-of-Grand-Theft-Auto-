@@ -316,4 +316,74 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, 3000);
-});
+
+            const carousel = document.getElementById('carousel');
+            const items = document.querySelectorAll('.carousel-item');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const navDots = document.getElementById('navDots');
+            let currentIndex = 0;
+            
+            // Create navigation dots
+            items.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                navDots.appendChild(dot);
+            });
+            
+            // Initialize carousel
+            updateCarousel();
+            
+            // Button event listeners
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateCarousel();
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateCarousel();
+            });
+            
+            // Auto-rotate every 5 seconds
+            let autoRotate = setInterval(() => {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateCarousel();
+            }, 5000);
+            
+            // Pause auto-rotate on hover
+            carousel.addEventListener('mouseenter', () => clearInterval(autoRotate));
+            carousel.addEventListener('mouseleave', () => {
+                autoRotate = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % items.length;
+                    updateCarousel();
+                }, 5000);
+            });
+            
+            function updateCarousel() {
+                // Update active dot
+                document.querySelectorAll('.dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+                
+                // Position items in 3D space
+                items.forEach((item, index) => {
+                    const angle = (index - currentIndex) * 40;
+                    const z = -Math.abs(index - currentIndex) * 200;
+                    const scale = index === currentIndex ? 1 : 0.85;
+                    const opacity = index === currentIndex ? 1 : 0.6;
+                    
+                    item.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(${z}px) scale(${scale})`;
+                    item.style.zIndex = index === currentIndex ? 10 : 1;
+                    item.style.filter = `brightness(${index === currentIndex ? 1 : 0.7})`;
+                    item.style.opacity = opacity;
+                });
+            }
+            
+            function goToSlide(index) {
+                currentIndex = index;
+                updateCarousel();
+            }
+        });
