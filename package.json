@@ -1,0 +1,24 @@
+{
+  "name": "the-start-of-grand-theft-auto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EricCoetzee/The-Start-of-Grand-Theft-Auto-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/EricCoetzee/The-Start-of-Grand-Theft-Auto-/issues"
+  },
+  "homepage": "https://github.com/EricCoetzee/The-Start-of-Grand-Theft-Auto-#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
