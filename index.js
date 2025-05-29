@@ -11,7 +11,6 @@ const __dirname = dirname(__filename);
 
 
 
-
 // Add error handling middleware
 app.use((err, req, res, next) => {
   console.error('Server Error:', err);
@@ -29,6 +28,6 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 // Ma
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Server running at http://localhost:${port}`);
 });
